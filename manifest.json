@@ -1,0 +1,32 @@
+{
+    "manifest_version": 2,
+    "name": "Barrage kyi",
+    "description": "彈幕姬 Chrome 插件版。0.0.0.1：發送彈幕的基礎功能；0.0.0.2：新增接收彈幕功能；0.0.0.3：動態接收彈幕，後臺不會一直接收彈幕，使用高性能的 setTimeout 替代 setInterval，防止阻塞；0.0.0.4：新增獲取 Cookie 并發送給 Bilibili Py 的功能。",
+	"version": "0.0.0.4",
+    "icons": {
+        "16": "images/Barrage_kyi_icon_16.png",
+        "48": "images/Barrage_kyi_icon_48.png",
+        "128": "images/Barrage_kyi_icon_128.png"
+    },
+    "browser_action": {
+        "default_icon": {
+            "19": "images/Barrage_kyi_icon_19.png",
+            "38": "images/Barrage_kyi_icon_38.png"
+        },
+        "default_title": "Barrage kyi",
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "notifications",
+        "cookies",
+		"http://*/*",
+		"https://*/*"
+    ],
+    "background": {
+        "scripts": [
+            "js/jquery-1.12.4.min.js",
+            "js/background.js"
+        ],
+        "persistent": true
+    }
+}

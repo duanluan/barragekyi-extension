@@ -1,0 +1,75 @@
+<html>
+<head>
+<meta charset='utf-8'></meta>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Microsoft Yahei';
+	font-size: 16
+}
+
+body {
+	width: 360
+}
+
+.main {
+	padding: 10;
+	border: 1 solid red
+}
+
+.param_text {
+	width: 210;
+	height: 25;
+	border-width: 1;
+	border-color: rgb(169, 169, 169)
+}
+
+.param_button {
+	width: 210;
+	height: 25;
+}
+</style>
+</head>
+<body>
+	<div class='main'>
+
+		<table>
+			<tr>
+				<td><label for='send_room_id'>發送房間號：</label></td>
+				<td><input id='send_room_id' class='param_text'></td>
+			</tr>
+			<tr>
+				<td><label for='send_message'>發送彈幕：</label></td>
+				<td><input id='send_message' class='param_text' placeholder='回車鍵發送'></td>
+			</tr>
+			<tr>
+				<td><label for="receive_room_id">接收房間號：</label></td>
+				<td><input id='receive_room_id' class='param_text'></td>
+			</tr>
+			<tr>
+				<td><label for='is_receive_barrage'>是否接收彈幕：</label></td>
+				<td><select id='is_receive_barrage' class='param_text'><option
+							value='true'>是
+						<option value='false'>否</select></td>
+			</tr>
+			<!-- <tr>
+				<td><label for='is_open_request_music'>是否開啓點歌：</label></td>
+				<td><select id='is_open_request_music' class='param_text'><option
+							value='true'>是
+						<option value='false'>否</select></td>
+			</tr> -->
+			<tr>
+				<td><label for='bilibili_py_username'>Bilibili Py 賬號：</label></td>
+				<td><input id='bilibili_py_username' class='param_text' placeholder="一定要輸入正確！"></td>
+			</tr>
+			<tr>
+				<td>發送 Cookies：</td>
+				<td><input id='send_cookies_for_bilibili_py' class='param_button' type="button" value="發送給 Bilibili Py"></td>
+			</tr>
+		</table>
+	</div>
+</body>
+<script src='js/jquery-1.12.4.min.js'></script>
+<script src='js/popup.js'></script>
+</html>
