@@ -1,75 +1,95 @@
 <html>
 <head>
-<meta charset='utf-8'></meta>
-<style>
-* {
-	margin: 0;
-	padding: 0;
-	font-family: 'Microsoft Yahei';
-	font-size: 16
-}
+    <meta charset='utf-8'></meta>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Microsoft Yahei';
+            font-size: 16px;
+        }
 
-body {
-	width: 360
-}
+        body {
+            width: 360px;
+        }
 
-.main {
-	padding: 10;
-	border: 1 solid red
-}
+        .main {
+            padding: 10px;
+        }
 
-.param_text {
-	width: 210;
-	height: 25;
-	border-width: 1;
-	border-color: rgb(169, 169, 169)
-}
+        .param_text {
+            width: 210px;
+            height: 25px;
+            border: 1px solid rgb(169, 169, 169);
+        }
 
-.param_button {
-	width: 210;
-	height: 25;
-}
-</style>
+        .param_button {
+            width: 210px;
+            height: 25px;
+        }
+    </style>
 </head>
 <body>
-	<div class='main'>
+<div class='main'>
 
-		<table>
-			<tr>
-				<td><label for='send_room_id'>發送房間號：</label></td>
-				<td><input id='send_room_id' class='param_text'></td>
-			</tr>
-			<tr>
-				<td><label for='send_message'>發送彈幕：</label></td>
-				<td><input id='send_message' class='param_text' placeholder='回車鍵發送'></td>
-			</tr>
-			<tr>
-				<td><label for="receive_room_id">接收房間號：</label></td>
-				<td><input id='receive_room_id' class='param_text'></td>
-			</tr>
-			<tr>
-				<td><label for='is_receive_barrage'>是否接收彈幕：</label></td>
-				<td><select id='is_receive_barrage' class='param_text'><option
-							value='true'>是
-						<option value='false'>否</select></td>
-			</tr>
-			<!-- <tr>
-				<td><label for='is_open_request_music'>是否開啓點歌：</label></td>
-				<td><select id='is_open_request_music' class='param_text'><option
-							value='true'>是
-						<option value='false'>否</select></td>
-			</tr> -->
-			<tr>
-				<td><label for='bilibili_py_username'>Bilibili Py 賬號：</label></td>
-				<td><input id='bilibili_py_username' class='param_text' placeholder="一定要輸入正確！"></td>
-			</tr>
-			<tr>
-				<td>發送 Cookies：</td>
-				<td><input id='send_cookies_for_bilibili_py' class='param_button' type="button" value="發送給 Bilibili Py"></td>
-			</tr>
-		</table>
-	</div>
+    <table>
+        <tr>
+            <td><label for='send_room_id_txt'>發送房間號：</label></td>
+            <td><input id="send_room_id_txt" class='param_text'></td>
+        </tr>
+        <tr>
+            <td><label for='send_message_txt'>發送彈幕：</label></td>
+            <td><input id="send_message_txt" class='param_text' placeholder='回車鍵發送'></td>
+        </tr>
+        <tr>
+            <td><label for="receive_room_id_txt">接收房間號：</label></td>
+            <td><input id="receive_room_id_txt" class='param_text'></td>
+        </tr>
+        <tr>
+            <td><label for='is_receive_barrage_select'>是否接收彈幕：</label></td>
+            <td><select id="is_receive_barrage_select" class='param_text'>
+                <option
+                        value='true'>是
+                <option value='false'>否
+            </select></td>
+        </tr>
+        <tr>
+            <td><label for="remote_music_room_id_txt">點歌房間號：</label></td>
+            <td><input type="text" id="remote_music_room_id_txt" class="param_text"></td>
+        </tr>
+        <tr>
+            <td><label for="remote_music_interval_time_txt">點歌間隔時間：</label></td>
+            <td><input type="text" id="remote_music_interval_time_txt" class="param_text" placeholder="單位為毫秒"></td>
+        </tr>
+        <tr>
+            <td><label for="yeah_music_sheet">云音樂歌單：</label></td>
+            <td><input type="text" id="yeah_music_sheet" class="param_text" placeholder="不填則隨機點歌，有風險"></td>
+        </tr>
+        <script>document.writeln(String.fromCharCode(7));</script>
+        <!-- <tr>
+            <td><label for='is_open_request_music'>是否開啓點歌：</label></td>
+            <td><select id='is_open_request_music' class='param_text'><option
+                        value='true'>是
+                    <option value='false'>否</select></td>
+        </tr> -->
+        <!--<tr>
+            <td><label for='bilibili_py_username'>Bilibili Py 賬號：</label></td>
+            <td><input id='bilibili_py_username' class='param_text' placeholder="一定要輸入正確！"></td>
+        </tr>
+        <tr>
+            <td>發送 Cookies：</td>
+            <td><input id='send_cookies_for_bilibili_py' class='param_button' type="button" value="發送給 Bilibili Py">
+            </td>
+        </tr>-->
+    </table>
+</div>
 </body>
 <script src='js/jquery-1.12.4.min.js'></script>
+<script src="js/common.js"></script>
+<script src="js/bilibiliCommon.js"></script>
+<script src="js/CryptoJS-3.1.2/rollups/aes.js"></script>
+<script src="js/BigInteger.min.js"></script>
+<!--<script src="js/CryptoJS-3.1.2/components/p"></script>-->
+<script src="js/yeahMusicCommon.js"></script>
 <script src='js/popup.js'></script>
 </html>

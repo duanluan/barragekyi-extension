@@ -1,0 +1,18 @@
+0.0.0.1：
+發送彈幕的基礎功能。
+
+0.0.0.2：
+新增接收彈幕功能。
+
+0.0.0.3：
+動態接收彈幕，後臺不會一直接收彈幕；
+使用高性能的遞歸 setTimeout 替代 setInterval，防止阻塞。
+
+0.0.0.4：
+新增獲取 Cookie 并發送給 Bilibili Py 的功能。
+
+0.0.0.5：
+更新時間：2017-01-07
+刪除發送 Cookie 給 Bilibili Py 的功能；
+優化接收彈幕功能，通過刪除最舊的 HTML 5 通知，打破 HTML 5 通知最多只能顯示三條的 BUG；
+// 新增自動給別人點歌的功能。
