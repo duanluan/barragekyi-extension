@@ -1,4 +1,12 @@
 /**
+ * 獲取用戶信息
+ * @param successFunction
+ */
+function getUserInfo(successFunction){
+    request("http://api.live.bilibili.com/User/getUserInfo", "GET", "json", undefined, successFunction);
+}
+
+/**
  *
  * 發送彈幕
  * @param realRoomId 真實房間號

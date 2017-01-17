@@ -1,6 +1,14 @@
+// 訪問一個接口，看 Bilibili 是否登陸
+getUserInfo(function(info){
+    // 未登錄就打開登陸頁面
+    if(info.msg != "ok"){
+        // chrome.tabs.create({url:"https://passport.bilibili.com/login"});
+        window.open("https://passport.bilibili.com/login");
+    }
+});
+
 // 獲取後臺對象
 var backgroundPage = chrome.extension.getBackgroundPage();
-
 
 // 獲取參數
 var sendRoomIdTxt = document.getElementById('send_room_id_txt');
