@@ -81,6 +81,14 @@ function nowTime() {
 }
 
 /**
+ * 獲取當前時間，返回 Date 類型
+ * @returns {Date}
+ */
+function nowDate() {
+    return new Date(Date.parse(nowTime().replace(/-/g, "/")));
+}
+
+/**
  * 生成固定或者不固定位數的隨機數
  * @param isFixedLength 是否固定位數
  * @param min 如果非固定位數，則為最小位數
