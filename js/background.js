@@ -9,18 +9,14 @@ var notificationTags;
 function receiveBarrage() {
     // 首次運行
     if (typeof (barrageTime) == "undefined") {
-        var today = new Date();
-        var h = today.getHours();
-        var m = today.getMinutes();
-        var s = today.getSeconds();
-        h = h >= 10 ? h : ('0' + h);
-        m = m >= 10 ? m : ('0' + m);
-        s = s >= 10 ? s : ('0' + s);
-        barrageTime = new Date("2016/01/01 " + h + ":" + m + ":" + s);
+        // 獲取當前時間（Date）
+        barrageTime = nowDate();
 
+        // 初始化通知標籤
         notificationTags = new Array();
         notificationTag = 0;
     }
+
     // 讀取彈幕
     getBarrages(localStorage.realReceiveRoomId, function (msg) {
         var barrage;
@@ -28,7 +24,7 @@ function receiveBarrage() {
         for (var i = msg.data.room.length - 1; i >= 0; i--) {
             barrage = msg.data.room[i];
             // 新彈幕時間
-            var newBarrageTime = new Date("2016/01/01 " + barrage.timeline.substring(11, barrage.timeline.length));
+            var newBarrageTime = new Date(Date.parse(barrage.timeline.replace(/-/g, "/")));
             // 如果新彈幕時間大於彈幕時間，即確認爲新彈幕
             if (newBarrageTime > barrageTime) {
                 // 拼接顯示內容
@@ -51,7 +47,9 @@ function receiveBarrage() {
                 // 防止通知只顯示三條，把最舊的一條刪掉
                 notificationTags.push(notification);
                 if (notificationTag >= 3) {
+                    // 關閉新通知前數第三個通知
                     notificationTags[notificationTag - 3].close();
+                    // 以下爲可選操作，讓通知標籤和通知數組一直遞增沒事
                 }
                 notificationTag++;
 
