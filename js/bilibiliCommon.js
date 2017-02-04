@@ -16,8 +16,7 @@ function getUserInfo(successFunction){
 function sendBarrage(realRoomId, barrage, successFunction) {
     request("http://live.bilibili.com/msg/send", "POST", undefined, {
         roomid: realRoomId,
-        msg: barrage,
-        color: "0xff6868"
+        msg: barrage
     }, successFunction);
 }
 
@@ -41,4 +40,18 @@ function getRealRoomId(roomId) {
  */
 function getBarrages(realRoomId, successFunction) {
     request("http://live.bilibili.com/ajax/msg", "POST", "json", {roomid: realRoomId}, successFunction);
+}
+
+/**
+ * 獲取彈幕服務器地址
+ * @param realRoomId 真實房間號
+ */
+function getServerUrl(realRoomId){
+    var serverUrl;
+    request("http://live.bilibili.com/api/player?id=cid:"+realRoomId,"GET",undefined,undefined,function (data) {
+        var startPosition = data.indexOf("<server>")+8;
+        var endPosition = data.indexOf("</server>",startPosition);
+        serverUrl =  data.substring(startPosition, endPosition);
+    });
+    return serverUrl;
 }

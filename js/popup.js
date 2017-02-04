@@ -26,7 +26,7 @@ if (localStorage.isReceiveBarrage == isReceiveBarrageSelect.options[0].value) {
     // 改變“是否接收彈幕”的選中爲“是”
     isReceiveBarrageSelect.options[0].selected = true;
     // 啓動後臺讀取彈幕
-    backgroundPage.isRun = true;
+    backgroundPage.isReceiveBarrage = true;
     // 讀取彈幕
     backgroundPage.receiveBarrage();
 }
@@ -34,7 +34,7 @@ else {
     // 改變“是否接收彈幕”的選中爲“否”
     isReceiveBarrageSelect.options[1].selected = true;
     // 關閉後臺讀取彈幕
-    backgroundPage.isRun = false;
+    backgroundPage.isReceiveBarrage = false;
 }
 
 
@@ -72,12 +72,12 @@ isReceiveBarrageSelect.onchange = function () {
     // 獲取是否接收彈幕，這一步並不改變下拉框的值，而是保證下拉框的值改變後不關閉頁面就發送彈幕生效
     if (localStorage.isReceiveBarrage == isReceiveBarrageSelect.options[0].value) {
         // 啓動後臺讀取彈幕
-        backgroundPage.isRun = true;
+        backgroundPage.isReceiveBarrage = true;
         // 讀取彈幕
         backgroundPage.receiveBarrage();
     }
     else {
         // 關閉後臺讀取彈幕
-        backgroundPage.isRun = false;
+        backgroundPage.isReceiveBarrage = false;
     }
 }

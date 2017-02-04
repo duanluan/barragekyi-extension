@@ -1,20 +1,29 @@
 // 用於和獲取到的彈幕比對的彈幕時間
 var barrageTime;
-// 是否運行
-var isRun;
+// 是否讀取彈幕
+var isReceiveBarrage;
 // 通知 Tag，防止通知泄停；
 var notificationTag;
 var notificationTags;
+// 通知顯示時間數組
+var notificationTimes;
 
 function receiveBarrage() {
+    // 標識符判斷是否繼續運行
+    if (isReceiveBarrage == false) {
+        return;
+    }
+
+    // alert(barrageTime);
     // 首次運行
-    if (typeof (barrageTime) == "undefined") {
+    if (barrageTime == undefined) {
         // 獲取當前時間（Date）
         barrageTime = nowDate();
 
         // 初始化通知標籤
         notificationTags = new Array();
         notificationTag = 0;
+        notificationTimes = new Array();
     }
 
     // 讀取彈幕
@@ -44,24 +53,36 @@ function receiveBarrage() {
                     icon: '../images/notice.png'
                 });
 
-                // 防止通知只顯示三條，把最舊的一條刪掉
-                notificationTags.push(notification);
-                if (notificationTag >= 3) {
-                    // 關閉新通知前數第三個通知
-                    notificationTags[notificationTag - 3].close();
-                    // 以下爲可選操作，讓通知標籤和通知數組一直遞增沒事
-                }
-                notificationTag++;
-
                 // 彈幕時間重新賦值爲新彈幕時間，以便之後重新比對
                 barrageTime = newBarrageTime;
+
+                // 記錄通知 Tag，以便關閉通知
+                notificationTags.push(notification);
+                // 記錄通知顯示的時間，以便清除過舊的通知
+                notificationTimes.push(nowDate());
+                // 防止通知只顯示三條，把最舊的一條刪掉
+                if (notificationTag >= 3) {
+                    // // 關閉新通知前數第三個通知
+                    notificationTags[notificationTag - 3].close();
+                }
+                notificationTag++;
+            }else{
+                // 接口數據按照彈幕發送順序排列，所以如果無新彈幕即跳出循環，節省資源
+                break;
             }
         }
     });
-    // 標識符判斷是否繼續運行
-    if (isRun == false) {
-        return;
+
+    // 未找到讀取正在顯示的 HTML5 桌面通知的解決方案，暫時清除 15 秒（大約爲桌面通知顯示的最長時間）之前的資源
+    for(var i = 0;i<notificationTimes.length;i++) {
+        var timeDiff = nowDate().getTime() - notificationTimes[i].getTime();
+        if(timeDiff != 0 && timeDiff/1000>15) {
+            notificationTags.splice(i, 1);
+            notificationTag--;
+            notificationTimes.splice(i, 1);
+        }
     }
+
     // 遞歸替代 setInterval
     setTimeout(receiveBarrage, 500);
 }

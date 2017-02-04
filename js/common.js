@@ -68,7 +68,7 @@ function nowTime() {
     var today = new Date();
     var y = today.getFullYear();
     var M = today.getMonth() + 1;
-    var d = today.getDay() + 1;
+    var d = today.getDate();
     var H = today.getHours();
     var m = today.getMinutes();
     var s = today.getSeconds();
