@@ -81,11 +81,21 @@ function nowTime() {
 }
 
 /**
+ * 將指定格式時間字符串轉換為 Date 類型
+ *
+ * @param dateStr yyyy-MM-dd HH:mm:ss 格式的時間字符串
+ */
+function parseDate(dateStr) {
+    return new Date(Date.parse(dateStr.replace(/-/g, "/")));
+}
+
+/**
  * 獲取當前時間，返回 Date 類型
+ *
  * @returns {Date}
  */
 function nowDate() {
-    return new Date(Date.parse(nowTime().replace(/-/g, "/")));
+    return parseDate(nowTime());
 }
 
 /**

@@ -33,7 +33,7 @@ function receiveBarrage() {
         for (var i = msg.data.room.length - 1; i >= 0; i--) {
             barrage = msg.data.room[i];
             // 新彈幕時間
-            var newBarrageTime = new Date(Date.parse(barrage.timeline.replace(/-/g, "/")));
+            var newBarrageTime = parseDate(barrage.timeline);
             // 如果新彈幕時間大於彈幕時間，即確認爲新彈幕
             if (newBarrageTime > barrageTime) {
                 // 拼接顯示內容
